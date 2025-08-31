@@ -59,3 +59,25 @@
   </script>
 </body>
 </html>
+<!-- Score im localStorage speichern & laden -->
+<script>
+  // Score beim Laden aus localStorage holen
+  if (localStorage.getItem("score")) {
+    score = parseInt(localStorage.getItem("score"));
+    document.getElementById("score").textContent = score;
+  }
+
+  // Funktion überschreiben, damit immer gespeichert wird
+  function addPoint() {
+    score++;
+    document.getElementById("score").textContent = score;
+    localStorage.setItem("score", score); // Speichern
+  }
+
+  // Optional: Reset-Button
+  function resetScore() {
+    score = 0;
+    document.getElementById("score").textContent = score;
+    localStorage.setItem("score", score);
+  }
+</script>
