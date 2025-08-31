@@ -1,73 +1,51 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Klicker</title>
-  <style>
-    body { text-align: center; font-family: sans-serif; margin-top: 50px; }
-    button { font-size: 40px; padding: 20px; }
-    #anzeige { font-size: 50px; margin: 20px; }
-  </style>
-</head>
-<body>
-  <div id="anzeige">0</div>
-  <button onclick="zaehlen()">Klick mich</button>
-
-  <script>
-    let zahl = 0;
-    function zaehlen() {
-      zahl++;
-      document.getElementById("anzeige").innerText = zahl;
-    }
-  </script>
-</body>
-</html>
-
-<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <title>ButtonSmasher</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 100px;
-      background: linear-gradient(to bottom, #a1c4fd, #c2e9fb);
-    }
-    #clickButton {
-      background-color: #ff6f61;
+      background-color: black;
       color: white;
-      font-size: 24px;
-      padding: 20px 40px;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #score {
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+
+    #clickButton {
+      background-color: white;
+      color: black;
+      font-size: 32px;
+      padding: 40px 40px;
       border: none;
-      border-radius: 15px;
+      border-radius: 50%; /* rund */
       cursor: pointer;
-      box-shadow: 0 5px #d45b4d;
+      box-shadow: 0 5px #888888;
       transition: all 0.2s ease;
     }
+
     #clickButton:hover {
-      background-color: #ff8a75;
+      background-color: #e0e0e0;
     }
+
     #clickButton:active {
       transform: translateY(4px);
-      box-shadow: 0 2px #d45b4d;
-      animation: bounce 0.2s;
-    }
-    @keyframes bounce {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-    #score {
-      font-size: 24px;
-      margin-top: 20px;
+      box-shadow: 0 2px #555555;
     }
   </style>
 </head>
 <body>
-  <button id="clickButton">Klick mich!</button>
-  <p>Punkte: <span id="score">0</span></p>
+  <div id="score">0</div>
+  <button id="clickButton">Klick!</button>
 
   <script>
     let score = 0;
