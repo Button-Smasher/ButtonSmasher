@@ -22,3 +22,62 @@
   </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>ButtonSmasher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background: linear-gradient(to bottom, #a1c4fd, #c2e9fb);
+    }
+    #clickButton {
+      background-color: #ff6f61;
+      color: white;
+      font-size: 24px;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 5px #d45b4d;
+      transition: all 0.2s ease;
+    }
+    #clickButton:hover {
+      background-color: #ff8a75;
+    }
+    #clickButton:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px #d45b4d;
+      animation: bounce 0.2s;
+    }
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    #score {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <button id="clickButton">Klick mich!</button>
+  <p>Punkte: <span id="score">0</span></p>
+
+  <script>
+    let score = 0;
+    const button = document.getElementById('clickButton');
+    const scoreDisplay = document.getElementById('score');
+
+    button.addEventListener('click', () => {
+      score++;
+      scoreDisplay.textContent = score;
+    });
+  </script>
+</body>
+</html>
