@@ -1,83 +1,64 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>ButtonSmasher</title>
-  <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    #score {
-      font-size: 36px;
-      margin-bottom: 50px;
-    }
-
-    #clickButton {
-      background-color: white;
-      color: black;
-      font-size: 32px;
-      padding: 40px 40px;
-      border: none;
-      border-radius: 50%; /* rund */
-      cursor: pointer;
-      box-shadow: 0 5px #888888;
-      transition: all 0.2s ease;
-    }
-
-    #clickButton:hover {
-      background-color: #e0e0e0;
-    }
-
-    #clickButton:active {
-      transform: translateY(4px);
-      box-shadow: 0 2px #555555;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Cookie Clicker</title>
+<style>
+  body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+  #cookie { width: 100px; height: 100px; border-radius: 50%; background-color: orange; margin: 20px auto; cursor: pointer; }
+  button { margin: 5px; padding: 10px 20px; font-size: 16px; }
+</style>
 </head>
 <body>
-  <div id="score">0</div>
-  <button id="clickButton">Klick!</button>
 
-  <script>
-    let score = 0;
-    const button = document.getElementById('clickButton');
-    const scoreDisplay = document.getElementById('score');
+<h1>Mini Cookie Clicker</h1>
+<div id="cookie"></div>
+<p>Cookies: <span id="cookieCount">0</span></p>
 
-    button.addEventListener('click', () => {
-      score++;
-      scoreDisplay.textContent = score;
-    });
-  </script>
+<h2>Powerups</h2>
+<button id="autoClickerBtn">Auto Clicker (50 Cookies)</button>
+<button id="grandmaBtn">Grandma (200 Cookies)</button>
+
+<script>
+let cookies = 0;
+let cookiesPerClick = 1;
+let cookiesPerSecond = 0;
+
+// Cookie klicken
+document.getElementById('cookie').addEventListener('click', () => {
+    cookies += cookiesPerClick;
+    updateDisplay();
+});
+
+// Powerup kaufen
+document.getElementById('autoClickerBtn').addEventListener('click', () => {
+    if (cookies >= 50) {
+        cookies -= 50;
+        cookiesPerSecond += 1;
+        updateDisplay();
+    }
+});
+
+document.getElementById('grandmaBtn').addEventListener('click', () => {
+    if (cookies >= 200) {
+        cookies -= 200;
+        cookiesPerSecond += 5;
+        updateDisplay();
+    }
+});
+
+// Cookies pro Sekunde
+setInterval(() => {
+    cookies += cookiesPerSecond;
+    updateDisplay();
+}, 1000);
+
+// Anzeige aktualisieren
+function updateDisplay() {
+    document.getElementById('cookieCount').textContent = cookies;
+}
+</script>
+
 </body>
 </html>
-<!-- Score im localStorage speichern & laden -->
-<script>
-  // Score beim Laden aus localStorage holen
-  if (localStorage.getItem("score")) {
-    score = parseInt(localStorage.getItem("score"));
-    document.getElementById("score").textContent = score;
-  }
-
-  // Funktion überschreiben, damit immer gespeichert wird
-  function addPoint() {
-    score++;
-    document.getElementById("score").textContent = score;
-    localStorage.setItem("score", score); // Speichern
-  }
-
-  // Optional: Reset-Button
-  function resetScore() {
-    score = 0;
-    document.getElementById("score").textContent = score;
-    localStorage.setItem("score", score);
-  }
-</script>
